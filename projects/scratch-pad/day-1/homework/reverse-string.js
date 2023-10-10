@@ -38,7 +38,7 @@ function reverseString(input) {
 /*
 I: A string
 O: returns a new string representing the input String reversed.
-C:
+C:N/A
 E:N/A
  */
 

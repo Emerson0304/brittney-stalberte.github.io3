@@ -35,7 +35,7 @@
 
 function greeter(hour) {
     // YOUR CODE BELOW HERE //
-    
+    //Using if, else-if and else, print a greeting to determine the day of day.
     // hour is 0-11
     if(hour >= 0 && hour <= 11){
     console.log('Good Morning!'); 
