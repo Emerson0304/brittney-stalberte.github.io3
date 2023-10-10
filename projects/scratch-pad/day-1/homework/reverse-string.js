@@ -23,7 +23,7 @@ function reverseString(input) {
     // YOUR CODE GOES BELOW HERE //
     
     //Create a variable to collect the reversed string.
-    let reversed = [];
+    let reversed = '';
 
     // Using a for loop iterate through the input in reverse order
     for(let i = input.length - 1; i >= 0; i--){

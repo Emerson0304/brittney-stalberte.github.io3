@@ -12,8 +12,16 @@
 */
 function fizzBuzz() {
     // YOUR CODE GOES BELOW HERE //
+//Using a for loop that prints the numbers from 1 to 100
+for(let i = 1; i <= 100; i++){//...but
+    if(i % 3 === 0){
+        console.log('Fizz')
+    }
 
 
+
+
+}
 
     // YOUR CODE GOES ABOVE HERE //
 }
