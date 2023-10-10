@@ -15,12 +15,27 @@
 function isArray(value) {
     // YOUR CODE BELOW HERE //
     
-    
+    if(Array.isArray(value)){
+        return true;
+    } else if(value === null){
+        return false;
+    } else if(value instanceof Date){
+        return false;
+    } else if(typeof value === 'object'){
+        return false;
+    } else {
+        return false;
+    }
     
     
     // YOUR CODE ABOVE HERE //
 }
-
+/*
+I: Array
+O: Return a boolean array value true or false 
+C:N/A
+E:
+*/
 /** 
  * Given an input value, return true if the value is an Object intended as a 
  * collection, false if otherwise.
@@ -32,8 +47,17 @@ function isArray(value) {
 function isObject(value) {
     // YOUR CODE BELOW HERE //
     
-    
-    
+    if(Array.isArray(value)){
+        return false;
+    } else if(value === null){
+        return false;
+    } else if(value instanceof Date){
+        return false;
+    } else if (typeof value === 'object'){
+        return true;
+    } else {
+        return false;
+    }
     
     // YOUR CODE ABOVE HERE //
 }

@@ -13,8 +13,15 @@
  */
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
-    
+    console.log(base)
+
+    return function(value){
+        if(value > base){
+            return true;
+        } else {
+            return false;
+        }
+    };
     
     
     // YOUR CODE ABOVE HERE //
@@ -28,7 +35,15 @@ function createGreaterThanFilter(base) {
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
-    
+     console.log(base)
+
+    return function(value){
+        if(value < base){
+            return true;
+        } else {
+            return false;
+        }
+    };
     
     
     // YOUR CODE ABOVE HERE //
@@ -42,9 +57,21 @@ function createLessThanFilter(base) {
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
     
-    
-    
-    
+    // return a function that test wether a given string starts with the startsWith.
+    return function(strings){
+        //Using an if statement to check whether the first character of the strings argument, when converted to uppercase, is equal to the startsWith argument.
+        //Using charAt() method to get the first character of the strings argument.
+        if(strings.charAt(0).toUpperCase() === startsWith){
+            return true;
+        //Using charAt() method to get the first character of the strings argument.
+        }else if(strings.charAt(0).toLowerCase() === startsWith){
+            return true;
+        }else {
+    // function returns the inner function
+            return false;
+        }
+
+    }
     // YOUR CODE ABOVE HERE //
 }
 
@@ -56,7 +83,10 @@ function createStartsWithFilter(startsWith) {
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
     
-    
+    return function(string){
+        let lastChar = string.charAt(string.length - 1);
+        return lastChar.toUpperCase() === endsWith.toUpperCase();
+    }
     
     
     // YOUR CODE ABOVE HERE //
@@ -72,7 +102,7 @@ function createEndsWithFilter(endsWith) {
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
     
-    
+    let newStrings = [];
     
     
     // YOUR CODE ABOVE HERE //
@@ -90,7 +120,11 @@ function modifyStrings(strings, modify) {
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
     
-    
+    for (let str of strings){
+        if(!test(str)){
+            return false;
+        }
+    }
     
     
     // YOUR CODE ABOVE HERE //

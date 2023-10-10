@@ -21,3 +21,18 @@
 
 ## How to install new project
 1) In terminal, type => code ~/.bashrc
+2) On line 4 of bashrc file, type => export CHE_PROJECTS_ROOT=/workspace
+3) Exit out of bashrc file
+4) Kill terminal
+5) Reopen terminal
+6) In terminal, type => sudo apt-get install subversion
+7) In terminal type => npm install -g opspark
+8) In terminal, type => os install
+9) Select project from dropdown
+10) On line 4 of bashrc file, type => export CHE_PROJECTS_ROOT=/workspace
+11) Exit out of bashrc file
+12) Kill terminal
+13) Reopen terminal
+14) In terminal, type => sudo apt-get install subversion
+15) In terminal type => npm install -g opspark
+16) In terminal, type => os install
