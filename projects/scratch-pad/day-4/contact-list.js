@@ -31,26 +31,57 @@
  *          
  *          WARNING: To pass this test, the LAST full name should have NO
  *          new-line character added after it!
+ * 
+ * I:
+ * 
+ * 
+ * 
  */
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
-
+    return  {
+        id: id,
+        nameFirst: nameFirst,
+        nameLast: nameLast,
+}
+    
 } 
-
 
 function makeContactList() {
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;
+    var contacts = [];
     
     return {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
+        },
+        addContact: function(contact){
+            contacts.push(contact)
+        },
+        findContact: function(fullName){
+            for(let i = contacts.length; 0 > i; i++){
+                if(contacts[i].fullName === fullName){
+                    return contacts[i];
+                }
+            }
+            return undefined;
+        },
+        removeContact: function(contact){
+            let index = contacts.indexOf(contact);
+            if(index !== -1){
+                contacts.splice(index, 1);
+            }
+        },
+
+        printedAllContactNames: function(){
+            let names = contacts.map(contact => `${contacts.nameFirst} ${contacts.nameLast}`).join('\n');
+        return names;
         }
-    }
+    } // returns an object
 }
 
 
