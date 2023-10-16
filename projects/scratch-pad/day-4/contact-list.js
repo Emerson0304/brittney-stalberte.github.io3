@@ -21,7 +21,7 @@
  *         undefined if the fullName does not match any contacts in the list.
  *      4. removeContact(contact): takes a contact object to be removed from 
  *         the contact-list.
- *      5. add a printAllContactNames() Function to your makeContactList() factory. The printAllContactNames() Function should 
+ *      5. add a printAllContactNames() Function to your makeContactList() factory. The C Function should 
  *         return a String formated with all the full-names of the separated 
  *         with a line-break, like so:
  *          
@@ -40,6 +40,7 @@
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
+    
     return  {
         id: id,
         nameFirst: nameFirst,
@@ -60,16 +61,17 @@ function makeContactList() {
             return contacts.length;
         },
         addContact: function(contact){
-            contacts.push(contact)
+           return contacts.push(contact)
         },
         findContact: function(fullName){
-            for(let i = contacts.length; 0 > i; i++){
-                if(contacts[i].fullName === fullName){
-                    return contacts[i];
-                }
-            }
-            return undefined;
-        },
+        for(let i = 0; i < contacts.length; i++){
+            let contact = contacts[i];
+         if(contact.nameFirst.toUpperCase() + ' ' + contact.nameLast.toUpperCase() === fullName.toUpperCase()){
+        return contact;
+         }
+          return undefined;
+        }
+    },
         removeContact: function(contact){
             let index = contacts.indexOf(contact);
             if(index !== -1){
@@ -77,14 +79,17 @@ function makeContactList() {
             }
         },
 
-        printedAllContactNames: function(){
-            let names = contacts.map(contact => `${contacts.nameFirst} ${contacts.nameLast}`).join('\n');
-        return names;
+        
+        printAllContactNames: function(){
+            let contactNames = contacts.map(contacts => `${contacts.nameFirst} ${contacts.nameLast}`).join('\n')
+            return contactNames;
+
         }
-    } // returns an object
+        
+        
+        
+    };
 }
-
-
 
 
 // YOUR CODE GOES ABOVE HERE //

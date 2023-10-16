@@ -114,17 +114,15 @@ function typeOf(value) {
         return 'string';
     }else if(Array.isArray(value)){
         return 'array';
-    }else if(value == null){
-        return 'null';
     }else if(value === 'object'){
         return 'object';
     }else if(value === 'undefined'){
         return 'undfined';
     }else if(typeof value === 'number'){
-        return 'number';
+        return 'number';                                        
     }else if(typeof value === 'boolean'){
         return 'boolean';
-    }else if(typeof value === 'null'){
+    }else if(value == null){
         return 'null';
     }else if(typeof value === 'function'){
         return 'function';
