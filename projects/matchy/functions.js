@@ -13,8 +13,13 @@
 //////////////////////////////////////////////////////////////////////
 // Step 1 - Search ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-function search(){
-
+function search(animals, findAnimal){
+for(var i = 0; i < animals.length; i++){
+    if(animals[i].name === findAnimal){
+        return animals[i];
+    }
+ };
+return null;
 }
 
 
@@ -34,10 +39,10 @@ function replace(animals, name, replacement){
 // Step 3 - Remove ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function remove(aniamls, name){
-    let index = animal.findIndex(aniaml => aniamls.name === name)
+function remove(animals, name){
+    let index = animals.findIndex(aniaml => aniaml.name === name)
     if(index !== -1){
-        animal.splice(index, 1)
+        animals.splice(index, 1)
     }
 }
 
@@ -45,9 +50,15 @@ function remove(aniamls, name){
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function add(animal, animals){
-    if(animal.name || animal.name.length === 0);
-    console.log("Animal's name is missing or empty")
+function add(animals, animal){
+    //Check that the animal Object has a property with a length > 0.
+    if(animal.hasOwnProperty('name') && typeof animal.name === 'string' && animal.name.length > 0){
+        // checks if the animal object has a species property with a length > 0
+        if(animal.hasOwnProperty('species') && typeof animal.species === 'string' && animal.species.length > 0){
+            
+        }
+
+    }
 }
 
 

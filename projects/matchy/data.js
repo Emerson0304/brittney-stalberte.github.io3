@@ -133,17 +133,17 @@ it's easier to store list of friends in an array because
 it provides an ordered collection that can hold multiple items.*/
 var friends = [];
 // create a function to get a random index from an array
-function getRandom(array){
-  randomIndex = Math.floor(Math.random() * array.length);
-  return randomIndex;
-}
-randomIndex = getRandom(animal);
-names.push(friends.randomAnimal);
 
+function getRandom(array){
+ randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
+}
+randomAnimal = getRandom(animals);
+friends.push(randomAnimal.name);
+console.log(friends);
 
 //Using **bracket nontation**, add the friends list as a **property** also named friends on just one of the animals in the array.
-friends.push([animals]) = friends;
-
+animals[2]['friends'] = friends;
 
 
 
