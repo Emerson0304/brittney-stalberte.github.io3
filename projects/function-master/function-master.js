@@ -2,8 +2,20 @@
 // Function 1 - Object Values ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function objectValues(object) {
+//const { keys } = require("lodash");
 
+// Define the objectValues function 
+function objectValues(object) {
+//an empty array to store the values of the object
+let valuesArray = [];
+//Using a for... in loop to loop through the object
+for(let key in object){
+    if(object.hasOwnProperty(key)){
+//using the push method to help push the values into the valuesArray
+        valuesArray.push(object[key])
+    }
+}
+return valuesArray;
 } 
 
 //////////////////////////////////////////////////////////////////////
@@ -12,7 +24,15 @@ function objectValues(object) {
 
 function keysToString(object) {
 
+}    var keysArray = [];
+for(let key in object){
+    if(typeof object[key] === 'string'){
+        keysArray.push(object[key]);
+
+    }
 }
+
+return keysArray.join(' ');
 
 //////////////////////////////////////////////////////////////////////
 // Function 3 - Values to String /////////////////////////////////////
@@ -20,6 +40,7 @@ function keysToString(object) {
 
 function valuesToString(object) {
     
+
 }
 
 //////////////////////////////////////////////////////////////////////
