@@ -51,15 +51,17 @@ function remove(animals, name){
 //////////////////////////////////////////////////////////////////////
 
 function add(animals, animal){
-    //Check that the animal Object has a property with a length > 0.
-    if(animal.hasOwnProperty('name') && typeof animal.name === 'string' && animal.name.length > 0){
-        // checks if the animal object has a species property with a length > 0
-        if(animal.hasOwnProperty('species') && typeof animal.species === 'string' && animal.species.length > 0){
+
+       //Check that the animal Object has a property with a length > 0.
+       if(animal.hasOwnProperty('name') && animal.name.length > 0 && animal.hasOwnProperty('species') && animal.name.length > 0){
+        const uniqueName = animals.every((existingAnimal) => existingAnimal.name !== animal.name);
+        if(uniqueName){
+            animals.push(animal);
+        }
             
         }
-
+        return animals;
     }
-}
 
 
 /**
