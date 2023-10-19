@@ -53,11 +53,8 @@ if(Array.isArray(collection)){
    return 'array';
 }else if(typeof collection === 'object'){
    return 'object';
-}else {
-   return 'unknown'
-}
-    
-}
+   }
+};
 
 //////////////////////////////////////////////////////////////////////
 // Function 5 - Capitalize Word //////////////////////////////////////
@@ -75,6 +72,22 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
+   
+      // Here I initialized an empty array called capitalizedArray to help store the capitalized words from the input array.
+    const capArray = [];
+      // This line of code I used a for...of loop to iterates through each word in the words array.
+      for(let word of string){
+    // Inside of the for... of loop this line capitalizes each word
+      // word.charAt(0) helped me get the first character of the current word
+      // .toUpperCase() converted the first character to uppercase
+      // word.slice(1); gets the remaining characters of the word.
+        const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1);
+      // Using .push() to add the capitalized word to the capitalizedArray.
+        capArray.push(capitalizedWord);
+      
+    // The function then returns the capitalizedArray in uppercase letters.
+    return capArray;
+    };
    
 }
 
@@ -99,6 +112,7 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
+
 
 }
 
@@ -132,6 +146,15 @@ function isFriend(name, object) {
 
 function nonFriends(name, array) {
 
+let friendsArray = array.find(array => array.name === name)
+   if(!friendsArray){
+ return [];
+}
+let notFriendNames = array 
+.filter(array => array.name !== name)
+ .filter(array => !friendsArray.friends.includes(array.name))
+ .map(array => array.name)
+ return notFriendNames
 }
 
 //////////////////////////////////////////////////////////////////////
