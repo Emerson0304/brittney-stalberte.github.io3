@@ -107,7 +107,7 @@
       return im_outside + im_inside;
     }
 
-    assert.equal(yay(), "");
+    assert.equal(yay(), "alphaomega");
   });
 
   QUnit.test("Functions retain outer scope references between calls.", function(assert){
@@ -117,9 +117,9 @@
     }
 
     yay();
-    assert.equal(im_outside, "???");
+    assert.equal(im_outside, 14);
     yay();
-    assert.equal(im_outside, "???");
+    assert.equal(im_outside, 15);
   });
 
   QUnit.test("We can do goofy stuff with outer scope", function(assert){
@@ -132,11 +132,11 @@
     }
 
     yay();
-    assert.equal(name, undefined);
+    assert.equal(name, "greg");
     yay();
-    assert.equal(name, "???");
+    assert.equal(name, name);
     yay();
-    assert.equal(name, "???");
+    assert.equal(name, name,);
   });
 
   QUnit.test("We can pass functions to other functions and then run them.", function(assert){
@@ -149,7 +149,7 @@
       whatever();
     }
     something(yay);
-    assert.equal(im_outter, "???");
+    assert.equal(im_outter, 40);
 
   });
 
@@ -160,7 +160,7 @@
     function foo(whatever){
       return "hello, this" + whatever();
     }
-    assert.equal(foo(yay), "???");
+    assert.equal(foo(yay), "hello, this is dog");
   });
 
 })();

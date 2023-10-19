@@ -3,28 +3,31 @@
 //////////////////////////////////////////////////////////////////////
 
 
-
-
 // Define the objectValues function 
 function objectValues(object) {
 //an empty array to store the values of the object
 let valuesArray = [];
 //Using a for... in loop to loop through the object
 for(let key in object){
-    if(object.hasOwnProperty(key)){
+   if(object.hasOwnProperty(key)){
 //using the push method to help push the values into the valuesArray
-        valuesArray.push(object[key])
+     valuesArray.push(object[key])
     }
 }
 return valuesArray;
-} 
+ } 
 
 //////////////////////////////////////////////////////////////////////
 // Function 2 - Keys to String ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//Define keysToString
 function keysToString(object) {
+// Create a varaible and use Object.keys to get an array from the object. 
+let keys = Object.keys(object);
+//each separated with a space using the .join method
+let string = keys.join(' ');
 
+return string;
 }
 
 
@@ -32,20 +35,27 @@ function keysToString(object) {
 // Function 3 - Values to String /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+// Define The ValuesToString
 function valuesToString(object) {
-    let stringValues = [];
-    for(let key in object){
-        if(typeof object[key] === 'string'){
-            string.Values.push(object[key]);
-    }
+
+   var values = Object.values(object);
+   let stringValues = values.filter(value => typeof value === 'string');
+   
 return stringValues.join(' ');
 }
-}
+  
 //////////////////////////////////////////////////////////////////////
 // Function 4 - Array or Object //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
+if(Array.isArray(collection)){
+   return 'array';
+}else if(typeof collection === 'object'){
+   return 'object';
+}else {
+   return 'unknown'
+}
     
 }
 
@@ -54,23 +64,26 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    
-}
+
+    return string.charAt(0).toUpperCase() + string.slice(1);
+   
+  
+   }
 
 //////////////////////////////////////////////////////////////////////
 // Function 6 - Capitalize All Words /////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+   
 }
 
-//////////////////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////////////////
 // Function 7 - Welcome Message //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-
+return "Welcome " + object.name.charAt(0).toUpperCase() + object.name.slice(1) + "!"
 }
 
 //////////////////////////////////////////////////////////////////////
