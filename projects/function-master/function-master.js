@@ -2,7 +2,8 @@
 // Function 1 - Object Values ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-//const { keys } = require("lodash");
+
+
 
 // Define the objectValues function 
 function objectValues(object) {
@@ -24,25 +25,22 @@ return valuesArray;
 
 function keysToString(object) {
 
-}    var keysArray = [];
-for(let key in object){
-    if(typeof object[key] === 'string'){
-        keysArray.push(object[key]);
-
-    }
 }
 
-return keysArray.join(' ');
 
 //////////////////////////////////////////////////////////////////////
 // Function 3 - Values to String /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    
-
+    let stringValues = [];
+    for(let key in object){
+        if(typeof object[key] === 'string'){
+            string.Values.push(object[key]);
+    }
+return stringValues.join(' ');
 }
-
+}
 //////////////////////////////////////////////////////////////////////
 // Function 4 - Array or Object //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////

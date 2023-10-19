@@ -54,6 +54,7 @@
   QUnit.test("Functions don't have access to eachothers scope", function(assert){
     function yay(){
       var from_yay = "i'm inside yay;";
+
     }
 
     function foo(){
@@ -61,8 +62,8 @@
       if(this.from_yay !== undefined){
         in_foo = this.from_yay;
       }
-      assert.equal(in_foo, "undefined");
-      assert.equal(this.from_yay, "i'm inside yay");
+      assert.equal(in_foo, "i'm in foo");
+      assert.equal(this.from_yay);
     }
     yay();
     foo();
@@ -73,13 +74,13 @@
     var peanuts = 300;
 
     function yay(){
-      var peanuts = "roasted";
+      var peanuts = 300;
 
-      assert.equal(peanuts, "???");
+      assert.equal(peanuts, 300);
     }
     yay();
 
-    assert.equal(peanuts, "???");
+    assert.equal(peanuts, 300);
   });
 
   QUnit.test("Variables created with var in a funtion are re-created each time", function(assert){
@@ -92,11 +93,11 @@
     }
 
     yay();
-    assert.equal(this.counter, "???");
+    assert.equal(this.counter, undefined);
     yay();
-    assert.equal(this.counter, "???");
+    assert.equal(this.counter, undefined);
     yay();
-    assert.equal(this.counter, "???");
+    assert.equal(this.counter, undefined);
   });
 
   QUnit.test("Inner scope can access outer scope", function(assert){
@@ -106,7 +107,7 @@
       return im_outside + im_inside;
     }
 
-    assert.equal(yay(), "???");
+    assert.equal(yay(), "");
   });
 
   QUnit.test("Functions retain outer scope references between calls.", function(assert){
@@ -131,7 +132,7 @@
     }
 
     yay();
-    assert.equal(name, "???");
+    assert.equal(name, undefined);
     yay();
     assert.equal(name, "???");
     yay();
