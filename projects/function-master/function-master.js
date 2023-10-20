@@ -2,7 +2,6 @@
 // Function 1 - Object Values ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-
 // Define the objectValues function 
 function objectValues(object) {
 //an empty array to store the values of the object
@@ -20,6 +19,7 @@ return valuesArray;
 //////////////////////////////////////////////////////////////////////
 // Function 2 - Keys to String ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
+
 //Define keysToString
 function keysToString(object) {
 // Create a varaible and use Object.keys to get an array from the object. 
@@ -48,6 +48,7 @@ return stringValues.join(' ');
 // Function 4 - Array or Object //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//Define the arrayOrObject function 
 function arrayOrObject(collection) {
 if(Array.isArray(collection)){
    return 'array';
@@ -60,41 +61,36 @@ if(Array.isArray(collection)){
 // Function 5 - Capitalize Word //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//Define the capitalizeWord
 function capitalizeWord(string) {
 
+   // return 'Welcome <Name>!' using uppercase method 
     return string.charAt(0).toUpperCase() + string.slice(1);
    
-  
+   
    }
 
 //////////////////////////////////////////////////////////////////////
 // Function 6 - Capitalize All Words /////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//Define the capitalizedWords function
 function capitalizeAllWords(string) {
-   
-      // Here I initialized an empty array called capitalizedArray to help store the capitalized words from the input array.
-    const capArray = [];
-      // This line of code I used a for...of loop to iterates through each word in the words array.
-      for(let word of string){
-    // Inside of the for... of loop this line capitalizes each word
-      // word.charAt(0) helped me get the first character of the current word
-      // .toUpperCase() converted the first character to uppercase
-      // word.slice(1); gets the remaining characters of the word.
-        const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1);
-      // Using .push() to add the capitalized word to the capitalizedArray.
-        capArray.push(capitalizedWord);
-      
-    // The function then returns the capitalizedArray in uppercase letters.
-    return capArray;
-    };
-   
+// Split the string into an array of words.
+   const words = string.split(' ');
+// Capitalize the first letter of each word and join them back into a string.
+   const capitalizeAllWrds = words.map((word) => {
+return word.charAt(0).toUpperCase() + word.slice(1);
+   });
+// Join the capitalized words with spaces and return the result.
+   return capitalizeAllWrds.join(' ');
 }
 
  //////////////////////////////////////////////////////////////////////
 // Function 7 - Welcome Message //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//Define the welcomeMessage function
 function welcomeMessage(object) {
 return "Welcome " + object.name.charAt(0).toUpperCase() + object.name.slice(1) + "!"
 }
@@ -103,15 +99,27 @@ return "Welcome " + object.name.charAt(0).toUpperCase() + object.name.slice(1) +
 // Function 8 - Profile Info /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//Define the profileInfo function 
 function profileInfo(object) {
-
+if(object && object.name && object.species){
+   let name = object.name.charAt(0).toUpperCase() + object.name.slice(1);
+   let species = object.species.charAt(0).toUpperCase() + object.species.slice(1);
+   return name + " is a " + species;
+   }
 }
-
 //////////////////////////////////////////////////////////////////////
 // Function 9 - Maybe Noises /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//Define the maubeNoises function.
 function maybeNoises(object) {
+if(object && object.noises && Array.isArray(object.noises) && object.noises.length > 0){
+   // using the join method to concat the elements in the noises array.
+   return object.noises.join(' ');
+}else {
+//if there are no noises return 'there are no noises'"
+   return 'there are no noises';
+}
 
 
 }
@@ -120,7 +128,11 @@ function maybeNoises(object) {
 // Function 10 - Has Words ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//Define hasWord function
 function hasWord(string, word) {
+//split the string into words and check if the given word is in the array
+let wordsArray = string.split(' ');
+return wordsArray.includes(word)
 
 }
 
@@ -128,7 +140,12 @@ function hasWord(string, word) {
 // Function 11 - Add Friend //////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//Defined the addFriend function.
 function addFriend (name, object) {
+// Add the name of the friends array.
+object.friends.push(name);
+//return the new object.
+return object;
 
 }
 
@@ -136,7 +153,13 @@ function addFriend (name, object) {
 // Function 12 - Is Friend ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//Define the isFriends function
 function isFriend(name, object) {
+   if(object.friends && object.friends.includes(name)){
+      return true;
+   }else {
+      return false;
+   }
 
 }
 
@@ -144,6 +167,7 @@ function isFriend(name, object) {
 // Function 13 - Non-Friends /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+// Define the nonFriends function.
 function nonFriends(name, array) {
 
 let friendsArray = array.find(array => array.name === name)
@@ -161,15 +185,25 @@ let notFriendNames = array
 // Function 14 - Update Object ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+// Define updatedObject function
 function updateObject(object, key, value) {
-
+// create the property with the provided key and value.
+object[key] = value;
+return object;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 15 - Remove Properties ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+// Define removeProperties function.
 function removeProperties(object, array) {
+   for(let i = 0; i < array.length; i++){
+      var removed = array[i];
+      if(object.hasOwnProperty(removed)){
+         delete object[removed];
+      }
+   }
 
 }
 
@@ -178,6 +212,15 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
+// 
+let deduplicatedArray = [];
+
+for(let i = 0; i < array.length; i++){
+   if(deduplicatedArray.indexOf(array[i]) === -1){
+      deduplicatedArray.push(array[i]);
+   }
+}
+return deduplicatedArray;
 
 }
 
