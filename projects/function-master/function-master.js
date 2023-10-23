@@ -169,17 +169,19 @@ function isFriend(name, object) {
 
 // Define the nonFriends function.
 function nonFriends(name, array) {
+   
+   var output = [];
+   for (var i = 0; i < array.length; i++) {
+     if (array[i].name !== name) {
+       if (!array[i].friends.includes(name)) {
+         output.push(array[i].name);
+       }
+     }
+   }
+    return output;
+}
 
-let friendsArray = array.find(array => array.name === name)
-   if(!friendsArray){
- return [];
-}
-let notFriendNames = array 
-.filter(array => array.name !== name)
- .filter(array => !friendsArray.friends.includes(array.name))
- .map(array => array.name)
- return notFriendNames
-}
+
 
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////
