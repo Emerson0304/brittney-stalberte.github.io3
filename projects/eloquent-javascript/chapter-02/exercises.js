@@ -6,10 +6,13 @@
 function triangles(x) { //represents the number of rows
 
 
-  let hashChar = '#'
- for(let tri = 1; tri <= 7; tri++){
+
+ for(let row = 1; row <= x; row++){
+let hashChar = ''
+for(let column = 1; column <= row; column++){
+  hashChar += '#' ;
+}
 console.log(hashChar);
-hashChar += '#'
  }
 
 };
@@ -18,18 +21,18 @@ hashChar += '#'
 ////////////////////////////////////////////////////////////////////////////////
 
 function fizzBuzz() {
-
-  for(let count = 1; count <= 100; count++){
-    let output = '';
-if(count % 3 === 0){
-output += 'Fizz';
-}
-
-if(count % 5 === 0){
-  output += 'Buzz';
-}
-console.log(output || count )
+// Create a code that prints all the numbers from 1 to 100, with two exceptions.
+for(count = 1; count <= 100; count++){
+  //exception1     //exception2
+  if(count % 3 === 0 && count % 5 === 0){
+    return 'FizzBuzz'
   }
+  
+}
+
+
+
+
 }
 
 
@@ -37,9 +40,9 @@ console.log(output || count )
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard(x) {// repreesent the rows and 
-return " "
-}
+// function drawChessboard(x) {// repreesent the rows and 
+// return " "
+// }
 
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
