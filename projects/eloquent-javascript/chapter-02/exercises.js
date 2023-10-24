@@ -5,8 +5,6 @@
 
 function triangles(x) { //represents the number of rows
 
-
-
  for(let row = 1; row <= x; row++){
 let hashChar = ''
 for(let column = 1; column <= row; column++){
@@ -20,30 +18,37 @@ console.log(hashChar);
 // fizzBuzz ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function fizzBuzz() {
-// Create a code that prints all the numbers from 1 to 100, with two exceptions.
-for(count = 1; count <= 100; count++){
-  //exception1     //exception2
-  if(count % 3 === 0 && count % 5 === 0){
-    return 'FizzBuzz'
-  }
-  
+function fizzBuzz(start, end) {
+for (let i = start; i <= end; i++){
+  if(i % 3 === 0 && i % 5 === 0){
+    console.log('fizzbuzz');
+  }else if(i % 3 === 0){
+    console.log('fizz');
+  }else if (i % 5 === 0){
+    console.log('buzz');
+  }else {
+    console.log(i);
+   }
+ }
 }
-
-
-
-
-}
-
+fizzBuzz(1, 15);
 
 ////////////////////////////////////////////////////////////////////////////////
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-// function drawChessboard(x) {// repreesent the rows and 
-// return " "
-// }
-
+function drawChessboard(x) {// repreesent the rows and column
+let chessBoard = '';
+for(let row = 0; row < x; row++){
+  for(let column = 0; column < x; column++){
+  // Alternate between space and # to represent white and black squares.
+    chessBoard += (row + column) % 2 === 0 ? ' ': '#';
+  }
+  // Add a newline at the end of each row
+  chessBoard += '\n';
+}
+console.log(chessBoard)
+}
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
