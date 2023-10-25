@@ -25,7 +25,75 @@ module.exports.each = each;
 
 
 /**
+ * identity: Function takes in a value and returns the value unchanged 
+ * 
+ * @param { Any value}: Function takes in any value
+ * @returns {Any value}: Function returns i
+ * 
+ */
+function identity(value){
+    return value;
+}
+module.exports.identity = identity;
+
+/**
+ * filter: Function 
  * 
  * 
+ * @param { Array }: Function takes in an array.
+ * @param { Function }: Function takes in a function to test each value in the array.
+ * 
+ * @returns { Array }: Function returns a new array...
+ */
+
+    function filter(array, func){
+        let result = [];
+    // using _.eacch to iterate through the array
+        _.each(array, function(element, index, array){
+            if(func(element, index, array)){
+                result.push(element);
+            }
+        })
+        return result;
+    }
+module.exports.filter = filter;
+
+/**
+ * typeOf:
+ * 
+ * @param { Any value}: Function takes in any value
+ * @returns { string value }: Function returns a string
+ * 
+ */
+
+function typeOf(value){
+    if(typeof value === 'string'){
+        return 'string';
+    }else if(Array.isArray(value)){
+        return 'array';
+    }else if(value === null){
+        return 'null';
+    }else if(typeof value === 'object') {
+        return 'object';
+    } else if(typeof value === 'number'){
+        return 'number';
+    }else if(typeof value === 'boolean') {
+        return 'boolean';
+    }else if(typeof value === 'undefined'){
+        return 'undefined';
+    }else if(typeof value === 'function') {
+        return 'function';
+    }else {
+        return 'unknown'
+    }
+
+    };
+module.exports.typeOf = typeOf;
+
+/**
+ * first:
+ * 
+ * @param { Array }: Fuction takes in an array
+ * @param { number }: Function takes in number 
  * 
  */

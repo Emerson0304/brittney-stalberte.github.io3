@@ -46,20 +46,23 @@ return value;
 */
 _.typeOf = function(value){
 if(typeof value === 'string'){
-    return 'string'
+    return 'string';
 }else if(Array.isArray(value)){
-    return 'array'
-}else if(typeof value === 'object' && value !== null){
-    return 'object'
-} else if (typeof value === 'undefined'){
-    return 'undefined';
-}else if(typeof value === 'number'){
-    return 'number'
-}else if(typeof value === 'boolean'){
+    return 'array';
+}else if(value === null){
+    return 'null';
+}else if(typeof value === 'object') {
+    return 'object';
+} else if(typeof value === 'number'){
+    return 'number';
+}else if(typeof value === 'boolean') {
     return 'boolean';
-}else if(typeof value === 'function'){
-    return 'function'
-
+}else if(typeof value === 'undefined'){
+    return 'undefined';
+}else if(typeof value === 'function') {
+    return 'function';
+}else {
+    return 'unknown'
 }
 
 
@@ -118,13 +121,16 @@ _.first = function(array, number){
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 _.last = function(array, number){
+    // If <array> is not an array, return []
     if(!Array.isArray(array)){
         return [];
     }
+    //If <number> is not given or not a number, return just the last element in <array>.
     if(typeof number !== 'number' || isNaN(number)){
         return array[array.length - 1];
     }
-    if(number < 0 ){
+    // Otherwise, return the last <number> items of <array>
+    if(number <= 0 ){
         return [];
     }
     if(number >= array.length){
@@ -148,12 +154,15 @@ _.last = function(array, number){
 *   _.indexOf(["a","b","c"], "c") -> 2
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
-_.indexOf = function indexOf(array, value){
+_.indexOf = function(array, value){// takes in two arguments array & value 
+    // for loop to iterate through the array.
     for(let i = 0; i < array.length; i++){
+    // determine if the array equal to the value  
         if(array[i] === value){
             return i;
         }
     }
+    // return -1 if <value> is not in <array>
     return -1;
 }
 
@@ -195,10 +204,12 @@ _.contains = function contains(array, value){
 _.each = function(collection, func){
     //checks if collection is an array
     if(Array.isArray(collection)){
+        // iterates through the entire collection 
         for(let i = 0; i < collection.length; i++){
             func(collection[i], i, collection);
         }
     } else { // else it's an object.
+        // for... in loop to loop through the object.
         for(let key in collection){
             func(collection[key], key, collection) // invoking function on each value in the array.
         }
@@ -219,10 +230,10 @@ _.unique = function(array){
     // iterate through the input array
     for(let i = 0; i < array.length; i++){
     //check if the current element is not already in the unique array.
-     if(_.indexOf(unique, array[i] === -1)){
+     _.indexOf(unique, array[i] === -1)
 // If it's not in the unique array, add it 
         unique.push(array[i]);
-     }
+     
     }
 
     return unique
@@ -299,7 +310,7 @@ _.reject = function(array, func){
 *   }); -> [[2,4],[1,3,5]]
 }
 */
-_.partition = function(array, func){
+_.partition = function(array, func){ // takes in two arguments array and func
     // Loop through the elements of the input array.
     for(let i = 0; i < array.length; i++){
 
@@ -349,6 +360,12 @@ _.map = function(collection, func){
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
+_.pluck = function(array, property){ // takes in two arguments array and property.
+    //iterate over the array of objects
+    return _.map(array, function(object){
+        return object[property];
+    });
+};
 
 /** _.every
 * Arguments:
@@ -406,7 +423,16 @@ _.map = function(collection, func){
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = function(collection, func){
+    let 
+    for(let i = 0; i < collection.length; i++){
+        if(collection === array){
+    }
+    
 
+    }
+
+}
 /** _.reduce
 * Arguments:
 *   1) An array
