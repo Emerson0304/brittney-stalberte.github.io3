@@ -311,10 +311,14 @@ _.reject = function(array, func){
 }
 */
 _.partition = function(array, func){ // takes in two arguments array and func
+
+    let truthy = [];
+    let falsy = [];
     // Loop through the elements of the input array.
     for(let i = 0; i < array.length; i++){
-
+        
     }
+    
 }
 
 /** _.map
@@ -388,19 +392,35 @@ _.pluck = function(array, property){ // takes in two arguments array and propert
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
-// _.every = function(collection, func){
-//     // check  if collection is an array
-//     if(Array.isArray(collection)){
-// if(func === undefined){
+_.every = function(collection, func){
+    // check if collection is an array
+    if(Array.isArray(collection)){
+    // determine if function was not provided
+        if(!func){
+        for(let i = 0; i < collection.length; i++){
+            if(func(collection[i]) === false){
+                return false;
+            }
+        }
+    } else {for(let i = 0; i < collection.length; i++){
+        // determine if the result of invoking func on the current item is true.
+        if(func(collection[i]) === false){
+            return false;
+        }
+    }
 
-// }else { // else it's an object
+    }
+    }  else {
+    //determine if function was not provided
+    if(func === undefined){
 
-//     }
-// }
+    } else {
 
+    }
+ }
 
-
-
+ return true;
+}
 
 /** _.some
 * Arguments:
@@ -423,16 +443,8 @@ _.pluck = function(array, property){ // takes in two arguments array and propert
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
-_.some = function(collection, func){
-    let 
-    for(let i = 0; i < collection.length; i++){
-        if(collection === array){
-    }
-    
-
-    }
-
-}
+// _.some = function(collection, func){
+// }
 /** _.reduce
 * Arguments:
 *   1) An array
@@ -451,7 +463,9 @@ _.some = function(collection, func){
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
+_.reduce = function(array, func){
 
+}
 
 /** _.extend
 * Arguments:
@@ -467,6 +481,17 @@ _.some = function(collection, func){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function(target, ...sources){
+    for(let source of sources) {
+        for(let key in source){
+            if(Object.prototype.hasOwnProperty.call(source, key)) {
+                target[key] = source[key];
+            }
+        }
+    }
+    return target;
+}
 
 
 //////////////////////////////////////////////////////////////////////
