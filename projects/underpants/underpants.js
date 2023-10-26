@@ -227,12 +227,12 @@ _.each = function(collection, func){
 */
 _.unique = function(array){
     let unique = [];
-    // iterate through the input array
-    for(let i = 0; i < array.length; i++){
+    // iterate through the array using a for... in loop
+    for(let element of array){
     //check if the current element is not already in the unique array.
-     _.indexOf(unique, array[i] === -1)
+     if(!unique.includes(element))
 // If it's not in the unique array, add it 
-        unique.push(array[i]);
+        unique.push(element);
      
     }
 
@@ -314,11 +314,18 @@ _.partition = function(array, func){ // takes in two arguments array and func
 
     let truthy = [];
     let falsy = [];
-    // Loop through the elements of the input array.
-    for(let i = 0; i < array.length; i++){
-        
-    }
-    
+
+    for(let i = 0; i < array.length; i ++){
+        let element = array[i];
+        let key = i;
+        if(func(element, key, array)){
+            truthy.push(element);
+
+        }else {
+            falsy.push(element)
+        }
+     }
+     return [truthy, falsy];
 }
 
 /** _.map
@@ -349,8 +356,8 @@ _.map = function(collection, func){
         for(let key in collection){
             map.push(func(collection[key], key, collection))
         }
-        return map;
     }
+    return map;
 }
 
 /** _.pluck
@@ -393,34 +400,30 @@ _.pluck = function(array, property){ // takes in two arguments array and propert
 */
 
 _.every = function(collection, func){
-    // check if collection is an array
     if(Array.isArray(collection)){
-    // determine if function was not provided
         if(!func){
-        for(let i = 0; i < collection.length; i++){
-            if(func(collection[i]) === false){
-                return false;
+            for(let i = 0; i < collection.length; i++){
+                if(!collection[i]){
+                    return false;
+                }
+            }
+        } else {
+            for(let i = 0; i < collection; i++){
+                if(func(collection[i]) === false){
+                    return false;
+                }
             }
         }
-    } else {for(let i = 0; i < collection.length; i++){
-        // determine if the result of invoking func on the current item is true.
-        if(func(collection[i]) === false){
-            return false;
+    }else {
+        if(!func){
+
+        }else{
+
         }
     }
-
-    }
-    }  else {
-    //determine if function was not provided
-    if(func === undefined){
-
-    } else {
-
-    }
+   return true;
  }
 
- return true;
-}
 
 /** _.some
 * Arguments:
@@ -443,8 +446,9 @@ _.every = function(collection, func){
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
-// _.some = function(collection, func){
-// }
+_.some = function(collection, func){
+}
+
 /** _.reduce
 * Arguments:
 *   1) An array
@@ -463,9 +467,23 @@ _.every = function(collection, func){
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
-_.reduce = function(array, func){
-
+_.reduce = function(array, func, seed){
+    let result; 
+    if(seed === undefined){
+        result = array[0];
+        for(let i = 1; i < array.length; i++){
+            result = func(result, array[i], i);
+        }
+    }else{
+        result = seed;
+        for(let i = 0; i < array.length; i++){
+            result = func(result, array[i], i);
+        }
+    }
+    return result;
 }
+
+  
 
 /** _.extend
 * Arguments:
