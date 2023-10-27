@@ -404,22 +404,19 @@ _.every = function(collection, func){
         if(!func){
             for(let i = 0; i < collection.length; i++){
                 if(!collection[i]){
-                    return false;
+                    return false
+                    
                 }
             }
         } else {
-            for(let i = 0; i < collection; i++){
+            for(let i = 0; i < collection.length; i++){
                 if(func(collection[i]) === false){
                     return false;
                 }
             }
         }
     }else {
-        if(!func){
-
-        }else{
-
-        }
+      
     }
    return true;
  }
@@ -446,7 +443,38 @@ _.every = function(collection, func){
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
-_.some = function(collection, func){
+_.some = function(collection, func){ // takes in two arguments collection & function
+
+    // If function is not provided, check if one element is truthy.
+    if(func === undefined){
+    for(let element of collection){
+        if(element){
+        return true;
+        }
+    }
+    return false;
+}
+
+
+    //checks if collection is an array
+if(Array.isArray(collection)){
+  for(let i = 0; i < collection.length; i++){
+    if(func(collection[i], i, collection)){
+        return true;
+    }
+  }  
+  return false;
+}
+// checs if collection is an object.
+if(typeof collection === 'object' && collection !== undefined) {
+    for(let key in collection){
+        if(func(collection[key], key, collection)){
+            return true
+        }
+    }
+    return false;
+}
+ return false;
 }
 
 /** _.reduce

@@ -59,7 +59,7 @@ module.exports.identity = identity;
 module.exports.filter = filter;
 
 /**
- * typeOf:
+ * typeOf: 
  * 
  * @param { Any value}: Function takes in any value
  * @returns { string value }: Function returns a string
@@ -269,7 +269,128 @@ module.exports.pluck = pluck;
  * partition:
  * 
  * @param { Array }: Function takes in an array of 
+ * @param { func }: 
  * 
+ * @returns
+ */
+function map(collection, func){
+    let map = [];
+    //check if the collection is an array
+    if(Array.isArray(collection)) {
+        //Iterate through the array
+        for(let i = 0; i < collection.length; i++){
+            map.push(func(collection[i], i, collection))
+        }
+    } else if(typeof collection === 'object' && collection !== undefined){
+        // iterate through the object
+        for(let key in collection){
+            map.push(func(collection[key], key, collection))
+        }
+    }
+    return map;
+}
+module.exports.map = map;
+
+/**
+ * every:
  * 
+ * @param { collection }:
+ * @param { func }:
+ * 
+ * @returns
+ */
+
+function every(collection, func){
+    if(Array.isArray(collection)){
+        if(!func){
+            for(let i = 0; i < collection.length; i++){
+                if(!collection[i]){
+                    return false
+                    
+                }
+            }
+        } else {
+            for(let i = 0; i < collection.length; i++){
+                if(func(collection[i]) === false){
+                    return false;
+                }
+            }
+        }
+    }else {
+      
+    }
+   return true;
+ }
+ module.exports.every = every;
+
+ /**
+  * some:
+  * 
+  * @param { collection }:
+  * @param { func }:
+  * 
+  * @returns
+  * 
+  */
+ function some(collection, func){ // takes in two arguments collection & function
+
+    // If function is not provided, check if one element is truthy.
+    if(func === undefined){
+    for(let element of collection){
+        if(element){
+        return true;
+        }
+    }
+    return false;
+}
+
+
+    //checks if collection is an array
+if(Array.isArray(collection)){
+  for(let i = 0; i < collection.length; i++){
+    if(func(collection[i], i, collection)){
+        return true;
+    }
+  }  
+  return false;
+}
+// checs if collection is an object.
+if(typeof collection === 'object' && collection !== undefined) {
+    for(let key in collection){
+        if(func(collection[key], key, collection)){
+            return true
+        }
+    }
+    return false;
+}
+ return false;
+};
+module.exports.some = some;
+
+/**
+ * reduce:
+ * 
+ * @param { Array }:
+ * @param { func }:
+ * @param { seed }:
+ * 
+ * @returns
  * 
  */
+function reduce(array, func, seed){
+    let result; 
+    if(seed === undefined){
+        result = array[0];
+        for(let i = 1; i < array.length; i++){
+            result = func(result, array[i], i);
+        }
+    }else{
+        result = seed;
+        for(let i = 0; i < array.length; i++){
+            result = func(result, array[i], i);
+        }
+    }
+    return result;
+}
+module.exports.reduce = reduce;
+
