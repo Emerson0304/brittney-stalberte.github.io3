@@ -29,9 +29,20 @@ return males.length;
 
 };
 
-var femaleCount;
+var femaleCount = function(array){
+    let females = array.reduce((acc, customer) =>{
+        if(customer === 'female'){
+            return acc + 1;
+        }
+        return acc;
+    }, 0);
 
-var oldestCustomer;
+ return females;
+}
+
+var oldestCustomer = function (){
+    
+}
 
 var youngestCustomer;
 
