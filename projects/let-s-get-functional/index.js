@@ -21,7 +21,12 @@ var _ = require('underbar');
  *    IMPORTANT: Make sure you replace <YOUR_GITHUB_FOLDER with your actual github folder name that is in your workspace.
  */
 
+// filter, map, each, reduce
+// Iterate over a collection // USUALLY an ARRAY
+//Invoke a callback function on each item of the collection one at a time
+
 var maleCount = function(array) {
+//use filter method to get all the male customers and return the number.
 let males = _.filter(array, function(customer){
     return customer.gender === 'male';// true
 }); // [<male>, <male>]
@@ -30,27 +35,62 @@ return males.length;
 };
 
 var femaleCount = function(array){
-    let females = array.reduce((acc, customer) =>{
-        if(customer === 'female'){
-            return acc + 1;
+// using the reduce method to return the number of female customers.
+    let females = _.reduce(array, function(acc, current){
+        if(current.gender === 'female'){
+            acc += 1;
         }
         return acc;
-    }, 0);
-
- return females;
+        }, 0);
+        return females;
 }
 
-var oldestCustomer = function (){
-    
+var oldestCustomer = function(array){
+    let oldest = _.reduce(array, function(acc, customer){
+        if(acc.age > customer.age){
+            return acc;
+        } else {
+            return customer;
+        }
+    },);
+    return oldest.name;
+};
+   
+
+var youngestCustomer = function(array){
+    let youngest = _.reduce(array, function(accumulator, customer){
+        if(accumulator.age < customer.age){
+            return accumulator;
+        } else {
+            return customer;
+        }
+    },);
+    return youngest.name;
+};
+
+var averageBalance = function(array){
+    let balances = _.map(array, function(i){
+        return i.balances.replace()
+    },)
+    return balances
 }
 
-var youngestCustomer;
 
-var averageBalance;
 
-var firstLetterCount;
+var firstLetterCount = function (customers, letter){
+    let lowercaseLetter = letter.toLowerCase();
+    let matchingCustomers = customers.filter(customer => {
+        return customer.name.charAt(0).toLowerCase() === lowercaseLetter;
+    });
+    return matchingCustomers.length;
+}
 
-var friendFirstLetterCount;
+var friendFirstLetterCount = function (customers, letter){
+    let lowercaseLatter = letter.toLowerCase();
+
+    let count = customers.filter(customer => customer.name.charAt(0).toLowerCase() === lowercaseLetter).length;
+    return count;
+}
 
 var friendsCount;
 
