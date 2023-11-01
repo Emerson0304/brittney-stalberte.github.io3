@@ -69,32 +69,33 @@ var youngestCustomer = function(array){
 };
 
 var averageBalance = function(array){
-    let balances = _.map(array, function(i){
-        return i.balances.replace()
-    },)
-    return balances
-}
+let balances = _.map(array, function(customer){
+    return parseFloat(customer.balance.replace('$', '').replace(/,/g, ''))
+  });
+
+  let sum = _.reduce(balances, function(acc, balance){
+    return acc + balance;
+  }, 0);
+  return sum / array.length;
+};
 
 
 
 var firstLetterCount = function (customers, letter){
     let lowercaseLetter = letter.toLowerCase();
-    let matchingCustomers = customers.filter(customer => {
+    let matching = customers.filter(customer => {
         return customer.name.charAt(0).toLowerCase() === lowercaseLetter;
     });
-    return matchingCustomers.length;
+    return matching.length;
 }
 
-var friendFirstLetterCount = function (customers, letter){
-    let lowercaseLatter = letter.toLowerCase();
-
-    let count = customers.filter(customer => customer.name.charAt(0).toLowerCase() === lowercaseLetter).length;
-    return count;
-}
+var friendFirstLetterCount 
 
 var friendsCount;
 
-var topThreeTags;
+var topThreeTags = function(customers){
+
+}
 
 var genderCount;
 
