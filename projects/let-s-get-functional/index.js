@@ -91,8 +91,20 @@ var firstLetterCount = function (customers, letter){
 
 var friendFirstLetterCount  = function(friends, letter){
     if(Array.isArray(friends)) {
-        let uppercaseLetter = letter.toUpperCase();
-        let count = friends.filter((friend) => friend.toUpperCase().startsWith(uppercaseLetter)).length;
+        let lowercaseLetter = letter.toLowerCase();
+        let count = friends.reduce((acc, friend) => {
+            if(typeof friend === 'string' && friend.length > 0){
+                let names = friend.split(' ');
+                if(names.length > 0){
+                    let firstName = names[0]
+                    if(firstName[0].toLowerCase() === lowercaseLetter){
+                    return acc + 1;
+                    }
+                
+                }
+            }
+            return acc;
+        }, 0);
         return count;
     }else{
         return 0;
@@ -100,24 +112,46 @@ var friendFirstLetterCount  = function(friends, letter){
 }
 
 var friendsCount = function(customers, name){
-    let customer = customer.find(c => c.name.toLowerCase() === name.toLowerCase());
+    name = name.toLowerCase();
+    let customer = customers.find(current => current.name.toLowerCase() === name);
     if(!customer){
         return [];
     }
-    let friends = customers.filter(c => c.friends.includes(customer.name));
-    return friends;
+    let friends = customers
+    .filter(current => current.friends.includes(name))
+    .map(current => current.name);
+return friends;
 }
 
-var topThreeTags;
+var topThreeTags = function(customers){
+let tagCount = customers
+.map(customer => customer.tags)
+.flat()
+.reduce((count, tag) => {
+    count[tag] = (count[tag] || 0) + 1;
+    return count;
+}, {});
+let sortedTags = Object.keys(tagCount).sort((a, b) => tagCount[b] - tagCount[a]);
+let topTags = sortedTags.slice(0, 3);
+return topTags;
+
+}
 
 var genderCount = function (customers){
-    let genderSummary = customers.reduce((summary, customer) => {
-        let gender =  customer.gender
-        summary[gender] = (summary[gender] || 0) + 1;
-        return summary;
+    let genderSummary = customers.reduce(function(acc, current){
+        if(acc.hasOwnProperty(current.gender)){
+            acc[current.gender] += 1;
+        }else {
+            //need to create the property for that gender 
+            acc[current.gender] = 1;
+        }
+
+        return acc;
+        
     }, {});
-    return genderSummary;
+   return genderSummary;
 }
+
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
