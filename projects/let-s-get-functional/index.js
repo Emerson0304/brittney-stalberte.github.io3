@@ -89,11 +89,14 @@ var firstLetterCount = function (customers, letter){
     return matching.length;
 }
 
-var friendFirstLetterCount  = function(array, customer, letter){
-    let friends = customer.friends.filter(function(friend){
-        return friend.name[0] === letter;
-    });
-    return friends.length;
+var friendFirstLetterCount  = function(friends, letter){
+    if(Array.isArray(friends)) {
+        let uppercaseLetter = letter.toUpperCase();
+        let count = friends.filter((friend) => friend.toUpperCase().startsWith(uppercaseLetter)).length;
+        return count;
+    }else{
+        return 0;
+    }
 }
 
 var friendsCount = function(customers, name){

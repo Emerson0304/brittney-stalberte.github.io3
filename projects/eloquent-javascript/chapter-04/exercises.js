@@ -2,23 +2,29 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range(start, end) {
-let array = [];
-if(start > 0){
-  for (let i = start; i <= end; i += step){
-    array.push(i)
+function range(start, end, step = 1) {
+  let array = [];
+    if(start === end){
+  return array;
   }
+    if(step > 0){
+      for(let i = start; i <= end; i += step){
+        array.push(i)
+    }
+  }
+    return array; 
 }
-}
-//returns an array
-
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum() {
+function sum(numbers) {
+  let result = 0;
+  for(let i = 0; i < numbers.length; i++){
+    result += numbers[i];
+  }
+  return result;
 
 }
 
@@ -26,7 +32,10 @@ function sum() {
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
+function reverseArray(array) {
+  let arrayReversed = array.slice();
+arrayReversed.reverse();
+return arrayReversed;
 
 }
 
@@ -34,7 +43,13 @@ function reverseArray() {
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArrayInPlace() {
+function reverseArrayInPlace(array) {
+  let length = array.length;
+  for(let i = 0; i < Math.floor(length / 2); i++){
+    let temp = array[i];
+    array[i] = array[length - 1 - i];
+    array[length - 1 - i] = temp;
+  }
 
 }
 
@@ -42,7 +57,12 @@ function reverseArrayInPlace() {
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
+function arrayToList(array) {
+  let list = null;
+  for(let i = array.length - 1; i >= 0; i--){
+    list = {value: array[i], rest: list};
+  }
+  return list;
 
 }
 
@@ -50,23 +70,36 @@ function arrayToList() {
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
-
+function listToArray(list) {
+let array = [];
+let current = list;
+while(current !== null){
+  array.push(current.value);
+  current = current.rest;
+}
+return array;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function prepend() {
-
+function prepend(element, list) {
+return {value: element, rest: list};
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function nth() {
+function nth(list, n) {
+if(!list){
+  return undefined;
+}else if ( n === 0){
+  return list.value;
+}else {
+  return nth(list.rest, n - 1);
+  }
 
 }
 
@@ -74,8 +107,25 @@ function nth() {
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function deepEqual() {
+function deepEqual(a, b) {
+  if(a === b){
+    return true;
+  }
+  if(a === null || b === null || typeof a !== 'object' || typeof b !== 'object'){
+    return false;
+  }
+  let keysA = Object.keys(a);
+  let keysB = Object.keys(b);
 
+  if(keysA.length !== keysB.length){
+    return false;
+  }
+  for(let key of keysA){
+    if(!keysB.includes(key) || !deepEqual(a[key], b[key])){
+      return false;
+    }
+  }
+  return true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
