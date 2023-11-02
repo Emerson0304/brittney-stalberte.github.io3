@@ -89,15 +89,32 @@ var firstLetterCount = function (customers, letter){
     return matching.length;
 }
 
-var friendFirstLetterCount 
-
-var friendsCount;
-
-var topThreeTags = function(customers){
-
+var friendFirstLetterCount  = function(array, customer, letter){
+    let friends = customer.friends.filter(function(friend){
+        return friend.name[0] === letter;
+    });
+    return friends.length;
 }
 
-var genderCount;
+var friendsCount = function(customers, name){
+    let customer = customer.find(c => c.name.toLowerCase() === name.toLowerCase());
+    if(!customer){
+        return [];
+    }
+    let friends = customers.filter(c => c.friends.includes(customer.name));
+    return friends;
+}
+
+var topThreeTags;
+
+var genderCount = function (customers){
+    let genderSummary = customers.reduce((summary, customer) => {
+        let gender =  customer.gender
+        summary[gender] = (summary[gender] || 0) + 1;
+        return summary;
+    }, {});
+    return genderSummary;
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
