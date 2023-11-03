@@ -89,39 +89,40 @@ var firstLetterCount = function (customers, letter){
     return matching.length;
 }
 
-var friendFirstLetterCount  = function(friends, letter){
-    if(Array.isArray(friends)) {
-        let lowercaseLetter = letter.toLowerCase();
-        let count = friends.reduce((acc, friend) => {
-            if(typeof friend === 'string' && friend.length > 0){
-                let names = friend.split(' ');
-                if(names.length > 0){
-                    let firstName = names[0]
-                    if(firstName[0].toLowerCase() === lowercaseLetter){
+var friendFirstLetterCount  = function(array, customer, letter){
+if(Array.isArray(Array)){
+    let lowercaseLetter = letter.toLowerCase();
+    let count = array.reduce((acc, customer) => {
+        if(typeof customer === 'string' && customer.length > 0){
+            let names = customer.split(' ')
+            if(names.length > 0){
+                let firstName = names[0];
+                if(firstName[0].toLowerCase() === lowercaseLetter){
                     return acc + 1;
-                    }
-                
                 }
             }
-            return acc;
-        }, 0);
-        return count;
-    }else{
-        return 0;
-    }
+        }
+        return acc;
+    }, 0);
+    return count;
+
+}else{
+    return0;
+  }
 }
 
 var friendsCount = function(customers, name){
-    name = name.toLowerCase();
-    let customer = customers.find(current => current.name.toLowerCase() === name);
-    if(!customer){
-        return [];
+let count = [];
+for(let i = 0; i < customers.length; i++){
+    if(name !== customers[i].name);
+    for(let j = 0; j < customers[j].friends.length; j++){
+        if(customers[i].friends[j].name === name){
+            count.push(customers[i].name)
+        }
     }
-    let friends = customers
-    .filter(current => current.friends.includes(name))
-    .map(current => current.name);
-return friends;
 }
+return count;
+};
 
 var topThreeTags = function(customers){
 let tagCount = customers
