@@ -58,11 +58,17 @@ if(n > 0){
 // sumBelow(7); // 21
 var sumBelow = (n) => {
   //base 
-  if(n <= 0){
+  if(n === 0){
     return 0;
   }
 //recusion
-return (n - 1) + sumBelow(n - 1)
+if(n > 0){
+  return (n - 1) + sumBelow(n - 1)
+}else {
+  return (n + 1) + sumBelow(n + 1)
+}
+
+
 };
 
 // 6. Get the integers in range (x, y).
@@ -222,6 +228,19 @@ var flatten = function(arrays) {
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
 var letterTally = function(str, obj) {
+  obj = {};
+
+  for(let i = 0; i < str.length; i++){
+    let char = str[i].toLowerCase();
+    if(/[a-z]/.test(char)){
+      if(obj[char]){
+        obj[char]++
+      }else {
+        obj[char] = 1;
+      }
+    }
+  }
+  return obj;
 };
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
@@ -242,6 +261,22 @@ var augmentElements = function(array, aug) {
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
 var minimizeZeroes = function(array) {
+  let result = [];
+  let prevElement;
+
+  for(let i = 0; i < array.length; i++){
+    let current = array[i];
+
+    if(current === 0){
+   if (current !== prevElement){
+    result.push(current);
+   }
+    }else{
+      result.push(current);
+    }
+    prevElement = current;
+  } 
+  return result;
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
@@ -249,12 +284,48 @@ var minimizeZeroes = function(array) {
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
 var alternateSign = function(array) {
+  if(array.length < 1){
+    return array;
+  }
+  for(let i = 1; i < array.length; i++){
+    array[0] = Math.abs(array[i]);
+  }
+  return array;
+
 };
+
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
+  let numberToWord = {
+    '0': 'zero',
+    '1': 'one',
+    '2': 'two',
+    '3': 'three',
+    '4': 'four',
+    '5': 'five',
+    '6': 'six',
+    '7': 'seven',
+    '8': 'eight',
+    '9': 'nine'
+  };
+ function replaceDigits(s){
+  if(s === ""){
+    return "";
+  }
+  let firstChar = s[0];
+  let stringLeft = s.slice(1);
+
+  if(numberToWord[firstChar]){
+    return numberToWord[firstChar] + replaceDigits(stringLeft)
+  }else{
+    return firstChar + replaceDigits(stringLeft);
+  }
+ }
+ return replaceDigits(str)
+  
 };
 
 // *** EXTRA CREDIT ***

@@ -37,11 +37,13 @@ function identity(value){
 module.exports.identity = identity;
 
 /**
- * filter: Function 
- * 
- * 
- * @param { Array }: Function takes in an array.
- * @param { Function }: Function takes in a function to test each value in the array.
+ * filter: Designed to create a new array that contains elements 
+ * from the input array.
+ * filters the input array based on 
+ * a specified condition and returns the fitlered results.
+ *
+ *  @param { Array }: Function takes in an array.
+ * @param { Func }: A function that is used to test each vale in the input array.
  * 
  * @returns { Array }: Function returns a new array...
  */
@@ -59,9 +61,12 @@ module.exports.identity = identity;
 module.exports.filter = filter;
 
 /**
- * typeOf: 
+ * typeOf: This function determines the data type of a 
+ * given value, it is desinged to pass a string to the typeof function,
+ * and it will return 'string' and if you pass an array, it will return 'array'
  * 
  * @param { Any value}: Function takes in any value
+ * 
  * @returns { string value }: Function returns a string
  * 
  */
@@ -91,12 +96,13 @@ function typeOf(value){
 module.exports.typeOf = typeOf;
 
 /**
- * first:
+ * first: Designed to retrieve the first elements from an input array.
  * 
  * @param { Array }: Fuction takes in an array
- * @param { number }: Function takes in number 
+ * @param { number }: Function takes in a number 
  * 
- * @returns 
+ * @returns: value depends on the input values 
+ * provided whenever the first function is called/invoked.
  */
 function first(array, number){
     if(!Array.isArray(array)){
@@ -116,12 +122,13 @@ function first(array, number){
 module.exports.first = first;
 
 /**
- * last:
+ * last: Designed to retrieve the last elements from an input array. 
  * 
  * @param { Array }: Function takes in an array
  * @param { number }: Function takes in a number
  * 
- * @returns 
+ * @returns: value depends on the input values 
+ * provided whenever the first function is called/invoked.
  */
 function last(array, number){
     // If <array> is not an array, return []
@@ -144,11 +151,14 @@ function last(array, number){
 module.exports.last = last;
 
 /**
- * indexOf:
+ * indexOf: This function is designed to find 
+ * the index of a specific value within an input array.
  * 
  * @param { Array }: Function takes in an array
- * @param { value }: 
+ * @param { value }: Function takes in a value
  * 
+ * @returns: the index of the first occurrence of the value in the array 
+ * or -1 if the value is not fiund in the array.
  * 
  */
 function indexOf(array, value){// takes in two arguments array & value 
@@ -165,12 +175,13 @@ function indexOf(array, value){// takes in two arguments array & value
 module.exports.indexOf = indexOf;
 
 /**
- * contains:
+ * contains: Is designed to check whether a specific 
+ * value exists within an input array.
  * 
  *@param { Array }: Function takes in an array
- * @param { value }:
+ * @param { value }: Function takes in a value 
  * 
- * @returns
+ * @returns: A boolean 
  */
 function contains(array, value){
     return array.includes(value);
@@ -178,12 +189,14 @@ function contains(array, value){
 module.exports.contains = contains;
 
 /**
- * reject:
+ * reject: The reject function is designed to filter elements
+ * from an input array based on the result of 
+ * a provided func function.
  * 
- * @param { }:
- * @param { }:
+ * @param { Array }: Function takes in an array
+ * @param { func }: A function to test each element in the array
  * 
- * @returns
+ * @returns: A boolean 
  * 
  */
 function reject(array, func){
@@ -202,12 +215,13 @@ function reject(array, func){
 module.exports.reject = reject;
 
 /**
- * extend:
+ * extend: Is designed to merge the properties of multiple 
+ * source objects into a target object.
  * 
- * @param { object }:
- * @param { object }:
+ * @param { target }:Function takes in an object.
+ * @param { sources }: object
  * 
- * @returns 
+ * @returns: An object
  */
 function extend(target, ...sources){
     for(let source of sources) {
@@ -222,12 +236,14 @@ function extend(target, ...sources){
 module.exports.extend = extend;
 
 /**
- * map: 
+ * map: Is designed to create a new array or collection
+ * by appling a function func to each elemnet or property
+ * in an input ollection.
  * 
- * @param { }:
- * @param { }:
+ * @param { collection }: Fucntion takes in an array or object
+ * @param { func }: Function takes in another function 
  * 
- * @retrurns
+ * @returns: An array
  * 
  */
 function map(collection, func){
@@ -249,10 +265,12 @@ function map(collection, func){
 module.exports.map = map;
 
 /**
- * pluck:
+ * pluck: Designed to extract a specific property's 
+ * values from an array of obejects and return 
+ * those values as a new array.
  * 
  * @param { Array }:Function takes in an array of objects  
- * @param { property }: Function takes in a property
+ * @param { property }: Function takes in an object
  * 
  * @returns: An array containing the value of property
  * for every element in the array.
@@ -266,38 +284,41 @@ function pluck(array, property){ // takes in two arguments array and property.
 module.exports.pluck = pluck;
 
 /**
- * partition:
+ * partition: Is designed to partition an array into two
+ * subarrays based on a specified condition.
  * 
  * @param { Array }: Function takes in an array of 
- * @param { func }: 
+ * @param { func }: Takes in an optional function 
  * 
- * @returns
+ * @returns: An array
  */
-function map(collection, func){
-    let map = [];
-    //check if the collection is an array
-    if(Array.isArray(collection)) {
-        //Iterate through the array
-        for(let i = 0; i < collection.length; i++){
-            map.push(func(collection[i], i, collection))
+function partition(array, func){ // takes in two arguments array and func
+
+    let truthy = [];
+    let falsy = [];
+
+    for(let i = 0; i < array.length; i ++){
+        let element = array[i];
+        let key = i;
+        if(func(element, key, array)){
+            truthy.push(element);
+
+        }else {
+            falsy.push(element)
         }
-    } else if(typeof collection === 'object' && collection !== undefined){
-        // iterate through the object
-        for(let key in collection){
-            map.push(func(collection[key], key, collection))
-        }
-    }
-    return map;
+     }
+     return [truthy, falsy];
 }
-module.exports.map = map;
+module.exports.partition = partition;
 
 /**
- * every:
+ * every: Is designed to check if all elements in a given 
+ * collection satisfy a specified condition.
  * 
- * @param { collection }:
- * @param { func }:
+ * @param { collection }: Fucntion takes in an array
+ * @param { func }: Takes in an optional function 
  * 
- * @returns
+ * @returns: A boolean 
  */
 
 function every(collection, func){
@@ -324,12 +345,13 @@ function every(collection, func){
  module.exports.every = every;
 
  /**
-  * some:
+  * some: Is designed to check if at least one element in a given 
+  * collection satisfies a specified condition.
   * 
-  * @param { collection }:
-  * @param { func }:
+  * @param { collection }:Fucntion takes in an array
+  * @param { func }: Takes in an optional function 
   * 
-  * @returns
+  * @returns: A boolean 
   * 
   */
  function some(collection, func){ // takes in two arguments collection & function
@@ -343,7 +365,6 @@ function every(collection, func){
     }
     return false;
 }
-
 
     //checks if collection is an array
 if(Array.isArray(collection)){
@@ -368,13 +389,15 @@ if(typeof collection === 'object' && collection !== undefined) {
 module.exports.some = some;
 
 /**
- * reduce:
+ * reduce: Is designed to apply a specified function to each elsement
+ * of an input array while accumulating a reslut, the returns the final 
+ * accumulated result.
  * 
- * @param { Array }:
- * @param { func }:
- * @param { seed }:
+ * @param { Array }: Takes in an array
+ * @param { func }: Takes in another function 
+ * @param { seed }: Takes in a seed 
  * 
- * @returns
+ * @returns: a value 
  * 
  */
 function reduce(array, func, seed){
@@ -393,4 +416,32 @@ function reduce(array, func, seed){
     return result;
 }
 module.exports.reduce = reduce;
+
+
+/**
+ * Unique: Designed to create a new array that 
+ * contains only the unique elements from
+ * the input array
+ * 
+ * @param { Array }: Takes in an array
+ * 
+ * 
+ * @returns: An array
+ * 
+ */
+function unique(array){
+    let unique = [];
+    // iterate through the array using a for... in loop
+    for(let element of array){
+    //check if the current element is not already in the unique array.
+     if(!unique.includes(element))
+// If it's not in the unique array, add it 
+        unique.push(element);
+     
+    }
+
+    return unique
+};
+module.exports.unique = unique;
+
 

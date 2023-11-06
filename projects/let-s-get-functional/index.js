@@ -90,25 +90,24 @@ var firstLetterCount = function (customers, letter){
 }
 
 var friendFirstLetterCount  = function(array, customer, letter){
-if(Array.isArray(Array)){
+if(Array.isArray(array)){
     let lowercaseLetter = letter.toLowerCase();
-    let count = array.reduce((acc, customer) => {
-        if(typeof customer === 'string' && customer.length > 0){
-            let names = customer.split(' ')
+    let count = 0;
+    for(let friend of array){
+        if(typeof friend === 'string' && friend.length > 0){
+            let names = friend.split(' ');
             if(names.length > 0){
                 let firstName = names[0];
-                if(firstName[0].toLowerCase() === lowercaseLetter){
-                    return acc + 1;
+                if(firstName[0].toLowerCase() == lowercaseLetter){
+                    count++;
                 }
             }
         }
-        return acc;
-    }, 0);
+    }
     return count;
-
-}else{
-    return0;
-  }
+}else {
+    return 0;
+}
 }
 
 var friendsCount = function(customers, name){
