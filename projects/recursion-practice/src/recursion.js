@@ -321,14 +321,21 @@ var fibonacci = function(n) {
 // nthFibo(5); // 5
 // nthFibo(7); // 13
 // nthFibo(3); // 2
-var nthFibo = function(n) {
+var nthFibo = function(n, memo = {}) {
+  if(n < 0){
+    return null;
+  }
   if(n === 0){
     return 0;
   }
   if(n === 1){
     return 1;
   }
-  return nthFibo(n - 1) + nthFibo(n - 2);
+   memo[n] = nthFibo(n - 1, memo) + nthFibo(n - 2, memo)
+ return memo[n];
+  
+ 
+
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
@@ -430,17 +437,20 @@ var minimizeZeroes = function(array) {
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
-  let arr = [];
-  if(array.length === 0){
-    return arr;
+var alternateSign = function(array, index = 0) {
+  if(index >= array.length){
+    return [];
   }
-  if(array.length % 2 === 0 || arr.length === 0){
-    arr.push(Math.abs(array[0]));
-  }else {
-    arr.push(-Math.abs(array[0]));
-  }
-  return arr.concat(alternateSign(array.slice(1)))
+
+ let current = array[index];
+
+ if(current !== 0){
+  let sign = index % 2 === 0 ? 1 : -1;
+  current = Math.abs(current) * sign;
+ }
+
+  return [current].concat(alternateSign(array, index + 1))
+  
 };
 
 

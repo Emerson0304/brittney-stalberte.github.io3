@@ -92,19 +92,21 @@ var firstLetterCount = function (customers, letter){
 var friendFirstLetterCount  = function(array, customer, letter){
     let count = 0;
     for(let i = 0; i < array.length; i++ ){
-        if(array[i].name.toUpperCase() === customer.toUpperCase()){
+        //converted both strings to lowercase 
+        if(array[i].name.toLowerCase() === customer.toLowerCase()){
             for(let j = 0; j < array[i].friends.length; j++){
-               if(array[i].friends[j].names[0].toUpperCase() === letter.toUpperCase()){
+                // converted both strings to lowercase for 
+               if(array[i].friends[j].name[0].toLowerCase() === letter.toLowerCase()){
                 count++;
                } 
             
             }
-            
         }
-        return count;
     }
-    
-}
+    // moved my return statement outside of the loop.
+    return count;
+};
+
 
 var friendsCount = function(customers, name){
 let count = [];
