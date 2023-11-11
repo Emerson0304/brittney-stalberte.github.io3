@@ -215,18 +215,15 @@ var gcd = function(x, y) {
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
   
-if(str1.length !== str2.length){
-  return false;
+if(str1 === '' && str2 === ''){
+  return true;
 }
 
-  if(str1 === '' && str2 === ''){
-    return true;
+  if(str1.length !== str2.length){
+    return false;
   } 
 
-  if (str1[0] !== str2[0]){
-    return false;
-  }
-  return compareStr(str1.slice(1), str2.slice(1))
+  return str1[0] === str2[0] && compareStr(str1.slice(1), str2.slice(1))
 };
 
 
@@ -418,20 +415,10 @@ var augmentElements = function(array, aug) {
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
 var minimizeZeroes = function(array) {
-
- function minimizeZeroesHelper(array, firstZeroEncountered){
-  if(array.length === 0){
-    return [];
- }
   
-  if(array[0] === 0 && firstZeroEncountered){
-   return minimizeZeroesHelper(array.slice(1), firstZeroEncountered)
-  }
-  return [array[0]].concat(minimizeZeroes(array.slice(1), array[0] === 0 || firstZeroEncountered))
-}
-
-  return minimizeZeroesHelper(array, false)
 };
+ 
+  
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
 // their original sign.  The first number in the index always needs to be positive.
