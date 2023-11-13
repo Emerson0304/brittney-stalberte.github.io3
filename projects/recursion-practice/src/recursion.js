@@ -186,12 +186,19 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
-   if(y === 0){
+  if (y === 0) {
     return 0;
-  }else {
-    return x + multiply(x, y -1)
   }
-  
+  if (y === 1) {
+    return x;
+  }
+  if (y === -1) {
+    return -x;
+  }
+  if (y < 0) {
+    return -x + multiply(x, y + 1);
+  }
+  return x + multiply(x, y - 1);
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
@@ -214,17 +221,16 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
-  
-if(str1 === '' && str2 === ''){
-  return true;
-}
-
-  if(str1.length !== str2.length){
+  if(str1.length === 0 && str2.length === 0){
+    return true;
+  }
+  if(str1[0] !== str2[0]){
     return false;
-  } 
+  }
+  return compareStr(str1.slice(1), str2.slice(1));
 
-  return str1[0] === str2[0] && compareStr(str1.slice(1), str2.slice(1))
 };
+
 
 
 // 16. Write a function that accepts a string and creates an array where each letter
@@ -415,8 +421,22 @@ var augmentElements = function(array, aug) {
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
 var minimizeZeroes = function(array) {
-  
+   //base
+  if(array.length === 0){
+    return [];
+  };
+   //recursion
+   if(array[0] === 0 && array[1] === 0){
+    return minimizeZeroes(array.slice(1));
+  } else if(array[0] === 0){
+    //keep slicing until a non-zero element is found
+    return [array[0]].concat(minimizeZeroes(array.slice(1)));
+   
+  } else {
+    return [array[0]].concat(minimizeZeroes(array.slice(1)));
+  }  
 };
+ 
  
   
 

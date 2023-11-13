@@ -65,4 +65,12 @@ const user = {
 
 // 3: Hoisting
 
- 
+ /* Hoising is a JavaScript mechanism where variables and 
+ function declarations are moved to 
+ the top of their scope before code execution.*/
+
+ //Example of hoisting:
+console.log(x); // Output: undefined
+var x = 10;
+console.log(x); // Output: 10
+// Here, the var x is hoisted to the top of the scope before the code execution
