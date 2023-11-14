@@ -10,7 +10,7 @@
 
 // 1. Assignment operators //
   
-/* The assignment operators assigns a value 
+/* Assignment operators assigns a value 
 to its left operand based on the value of its right operand. 
 The standard assignment operators 
 are equality (=), addition assignment (+=), 
@@ -41,7 +41,7 @@ console.log("a / b = ", a / b);// 2
 
 // 3. Logical operators //
   
-/* Logical operators are typically used with Boolean (logical) values; 
+/* Are typically used with Boolean (logical) values; 
 when they are, they return a Boolean value. However, the && and || operators 
 actually return the value of one of the specified operands, 
 so if these operators are used with non-Boolean values, 
@@ -75,7 +75,7 @@ console.log("e <= f", e <= f);// true
 
 // 6. Unary operators //
 
-/*A unary operation is an operation with only one operand. 
+/* Is an operation with only one operand. 
 The standard unary operators are negation (-), 
 increment (++), and decrement (--).*/
 

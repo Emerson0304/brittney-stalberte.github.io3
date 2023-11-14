@@ -24,7 +24,7 @@ A for loop, loops through a block of code a number of times.
 The for in loop, loops through the properties of an object.
 */
 
-// 2. Be able to loop anynumber of times, forward counting up to some limit, backwards counting down to 0.
+// 2. Be able to loop any number of times, forward counting up to some limit, backwards counting down to 0.
 // 1. looping forward 
 for (let i = 0; i < 10; i++) {
     console.log(i);
