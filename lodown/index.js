@@ -37,15 +37,16 @@ function identity(value){
 module.exports.identity = identity;
 
 /**
- * filter: Designed to create a new array that contains elements 
- * from the input array.
- * filters the input array based on 
- * a specified condition and returns the fitlered results.
+ * filter: Filter iterates through an array and invokes 
+ * a callback function on each item. 
+ * If the result of invoking the callback is truthy, 
+ * the item is pushed into an output array that filter returns.
  *
- *  @param { Array }: Function takes in an array.
- * @param { Func }: A function that is used to test each vale in the input array.
+ * @param { Array }: The array being filtered
+ * @param { Func }: function that is used to test each vale in the input array.
  * 
- * @returns { Array }: Function returns a new array...
+ * @returns { Array }: A new array containing values from the
+ *  input array that is passed the callback function.
  */
 
     function filter(array, func){
@@ -61,13 +62,10 @@ module.exports.identity = identity;
 module.exports.filter = filter;
 
 /**
- * typeOf: This function determines the data type of a 
- * given value, it is desinged to pass a string to the typeof function,
- * and it will return 'string' and if you pass an array, it will return 'array'
+ * typeOf:  Determines the data type of a given value. Returns a string representing the data type.
+ * @param { any } value: The value whose data type needs to be determined.
  * 
- * @param { Any value}: Function takes in any value
- * 
- * @returns { string value }: Function returns a string
+ * @returns { string }: A string representing the data type of the input value.
  * 
  */
 
@@ -98,11 +96,15 @@ module.exports.typeOf = typeOf;
 /**
  * first: Designed to retrieve the first elements from an input array.
  * 
- * @param { Array }: Fuction takes in an array
- * @param { number }: Function takes in a number 
+ * @param { Array }: array to retrieve elements from.
+ * @param { number }: (Optional) The number of elements to retrieve.
  * 
- * @returns: value depends on the input values 
- * provided whenever the first function is called/invoked.
+ * @returns:  If the input array is not an array, returns an empty array.
+ * If the number is not a valid number, returns the first element in the array.
+ * If the number is less than 0, returns an empty array.
+ * If the number is greater than or equal to the array length, returns a shallow copy of the array.
+ * Otherwise, returns the first <number> items of the array.
+ * 
  */
 function first(array, number){
     if(!Array.isArray(array)){
@@ -124,11 +126,15 @@ module.exports.first = first;
 /**
  * last: Designed to retrieve the last elements from an input array. 
  * 
- * @param { Array }: Function takes in an array
- * @param { number }: Function takes in a number
+ * @param { Array }: array to retrieve elements from.
+ * @param { number }: (Optional) The number of elements to retrieve.
  * 
- * @returns: value depends on the input values 
- * provided whenever the first function is called/invoked.
+ * @returns {any|Array}: If the input array is not an array, returns an empty array.
+ * If the number is not a valid number, returns the last element in the array.
+ * If the number is less than or equal to 0, returns an empty array.
+ * If the number is greater than or equal to the array length, returns a shallow copy of the array.
+ * Otherwise, returns the last <number> items of the array.
+ * 
  */
 function last(array, number){
     // If <array> is not an array, return []
@@ -154,11 +160,11 @@ module.exports.last = last;
  * indexOf: This function is designed to find 
  * the index of a specific value within an input array.
  * 
- * @param { Array }: Function takes in an array
- * @param { value }: Function takes in a value
+ * @param { Array }: The array to search for the value.
+ * @param { value }: The value to find in the array.
  * 
- * @returns: the index of the first occurrence of the value in the array 
- * or -1 if the value is not fiund in the array.
+ * @returns {number}: Function returns the index of the element if found and -1 if it is not found.
+ * 
  * 
  */
 function indexOf(array, value){// takes in two arguments array & value 
@@ -194,9 +200,9 @@ module.exports.contains = contains;
  * a provided func function.
  * 
  * @param { Array }: Function takes in an array
- * @param { func }: A function to test each element in the array
+ * @param { function }: A function to test each element in the array.
  * 
- * @returns: A boolean 
+ * @returns { Array }: An array with elements for which the function returned false.
  * 
  */
 function reject(array, func){
@@ -215,13 +221,13 @@ function reject(array, func){
 module.exports.reject = reject;
 
 /**
- * extend: Is designed to merge the properties of multiple 
+ * extend: Designed to merge the properties of multiple 
  * source objects into a target object.
  * 
- * @param { target }:Function takes in an object.
- * @param { sources }: object
+ * @param { Object} (target) : The target object to merge into.
+ * @param { Object} (...sources): Multiple source objects to merge from.
  * 
- * @returns: An object
+ * @returns {Object}: The target object with merged properties.
  */
 function extend(target, ...sources){
     for(let source of sources) {
@@ -236,14 +242,16 @@ function extend(target, ...sources){
 module.exports.extend = extend;
 
 /**
- * map: Is designed to create a new array or collection
+ * map: Designed to create a new array or collection
  * by appling a function func to each elemnet or property
- * in an input ollection.
+ * in an input collection.
  * 
- * @param { collection }: Fucntion takes in an array or object
- * @param { func }: Function takes in another function 
+ * @param { Array or Object } (collection):  The collection over which to iterate.
+ * @param { func }: The function to be applied to each element or property in the collection.
  * 
- * @returns: An array
+ * 
+ * @returns { Array }: An array containing the values obtained by applying the callback function to each
+ * element or property of the input collection.
  * 
  */
 function map(collection, func){
@@ -269,10 +277,10 @@ module.exports.map = map;
  * values from an array of obejects and return 
  * those values as a new array.
  * 
- * @param { Array }:Function takes in an array of objects  
- * @param { property }: Function takes in an object
+ * @param { Array }: An array of objects.
+ * @param { string }: The property to extract from each object.
  * 
- * @returns: An array containing the value of property
+ * @returns {Array}: An array containing the value of the specified property
  * for every element in the array.
  */
 function pluck(array, property){ // takes in two arguments array and property.
@@ -287,11 +295,14 @@ module.exports.pluck = pluck;
  * partition: Is designed to partition an array into two
  * subarrays based on a specified condition.
  * 
- * @param { Array }: Function takes in an array of 
- * @param { func }: Takes in an optional function 
+ * @param { Array }: The array to partition.
+ * @param { func }:  A function used to test each element in the array.
  * 
- * @returns: An array
+ * @returns {Array}: An array containing two subarrays.
+ * The first subarray contains elements for which the function returned true.
+ * The second subarray contains elements for which the function returned false.
  */
+ 
 function partition(array, func){ // takes in two arguments array and func
 
     let truthy = [];
@@ -389,15 +400,15 @@ if(typeof collection === 'object' && collection !== undefined) {
 module.exports.some = some;
 
 /**
- * reduce: Is designed to apply a specified function to each elsement
- * of an input array while accumulating a reslut, the returns the final 
+ * reduce: Is designed to apply a specified function to each element
+ * of an input array while accumulating a reslut, then returns the final 
  * accumulated result.
  * 
- * @param { Array }: Takes in an array
- * @param { func }: Takes in another function 
- * @param { seed }: Takes in a seed 
+ * @param { Array }: The array to reduce.
+ * @param { func }:  A function to apply to each element in the array.
+ * @param { seed }: (Optional) The initial value for the accumulation.
  * 
- * @returns: a value 
+ * @returns {any}: The accumulated result after applying the function to each element.
  * 
  */
 function reduce(array, func, seed){
@@ -423,10 +434,10 @@ module.exports.reduce = reduce;
  * contains only the unique elements from
  * the input array
  * 
- * @param { Array }: Takes in an array
+ * @param { Array }: extract unique elements from the input array.
  * 
  * 
- * @returns: An array
+ * @returns {Array}: An array containing only unique elements from the input array.
  * 
  */
 function unique(array){
