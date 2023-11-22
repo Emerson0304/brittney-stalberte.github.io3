@@ -39,6 +39,13 @@ console.log("a - b = ", a - b);// 2
 console.log("a * b = ", a * b);// 840
 console.log("a / b = ", a / b);// 2
 
+//show an example of the exponentiation operator.
+let x = 2 ** 3;
+console.log(x);// 8
+
+let y = 2 ** 3 ** 2;
+console.log(y);// 512
+
 // 3. Logical operators //
   
 /* Are typically used with Boolean (logical) values; 
@@ -47,10 +54,31 @@ actually return the value of one of the specified operands,
 so if these operators are used with non-Boolean values, 
 they may return a non-Boolean value.*/
 
-let g = 7;
-let h = 6;
-console.log("g == h && g > h", g == h && g > h);// false
-console.log("g == h || g > h", g == h || g > h);// true
+// What does logical operators mean ?
+/*Logical operators are used to 
+combine two or more expressions 
+into a single expression.*/
+
+// && // The AND Operator will return true if both expressions resolve to true
+
+  // Example of AND Operator:
+
+  console.log(18 > 1 && 2 < 22);// true
+  console.log(5 > 2 && 5 > 20);// false
+
+  // || // The OR Operator will return true if either expression resolves to true
+
+// Example of OR Operator:
+  console.log(35 > 5 || 25 < 5);// true
+  console.log(5 < 1 || 1 > 80);// false
+
+  // ! // The NOT Operator will return true if the expression resolves to false
+
+    // Example of NOT Operator:
+  console.log(!(10 > 1));// false
+  console.log(!(3 < 1));// true
+
+
 
 // 4. Comparison operators //
   

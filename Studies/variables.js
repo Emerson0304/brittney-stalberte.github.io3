@@ -44,11 +44,33 @@ console.log(myName);// prints => Brother
 // can be 
 //naturally global or function scoped
 
+var x = 5
+console.log(x)
+function foo() {
+  console.log(x)
+}
+
 // 1: let
 // CANNOT be redelared
 // can be reassigned
 // can be initialized without a value
 //naturally blocked scoped
+// Example of let being blocked scoped:
+{
+   let x = 1;
+   console.log(x);
+ }
+ console.log(x);
+ 
+ //Example of let being reassigned:
+ let y = 1;
+ y = 2;
+ console.log(y);
+ 
+ //Example of let being initialized without a value:
+ let z;
+ console.log(z);
+
 
 // 2: const => declaring CONSTANTS
 // CANNOT be redelared

@@ -130,14 +130,37 @@ console.log(1 / 0);// Infinity
 
  // 12.  primitive/simple and comlex data types //
  /*
- What is the difference between primitive/simple and comlex data types?
- primitive values passed to function BY Copy just means that the function gets a copy of the value. 
- Meaning that the function does not get a reference to the original value. While 
+ What is the difference between primitive/simple and complex data types?
+ primitive values passed to a function By Copy just means that the function gets a copy of the value. 
+ Meaning that the function does not get a reference to the original value. While complex are the oppsite 
+ and are Copied By Reference.
  */
 
- // 13.
-/*
+ 
+ /**
+  * What is copy by value?
+  * 
+  * - primitive data types (numbers, strings, booleans)
+  * - immutable (cannot be changed)
+  * - primitives are copied by value
+  */
+    // example of copy by value:
+    var a = 5;
+    var b = a;
+    b = 7;
+    console.log(a); // 5
+    console.log(b); // 7
 
-
-
+/**
+ * What is copy by reference ?
+ * 
+ * - non primitive data types (arrays, objects)
+ * - mutable (can be changed)
+ * - non primitives are copied by reference
  */
+    // example of copy by reference:
+    var a = [1, 2, 3];
+    var b = a;
+    b[0] = 4;
+    console.log(a); // [4, 2, 3]
+    console.log(b); // [4, 2, 3] 

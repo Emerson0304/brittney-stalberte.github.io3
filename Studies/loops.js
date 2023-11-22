@@ -3,7 +3,6 @@
  * 
  * 0: Loops are used to perform repeated tasks based on a conditions typically
  * return true or false. A loop will continue running until the defined condition returns false.
- * 
  */
 
 /**
@@ -11,10 +10,19 @@
 *
 * 0: Loops are used to repeat a block of code until a condition is met.
 * Types of Loops:
-* - for loops
-* - for in loops
-* - while loops
-* - do while loops
+* - for loop
+* The break down of the different sections of a for loop...
+* A For loop is comprised of 3 statements:
+- start statement: Is used to describe the initialization of a variable that will be used in the loop.
+  - initialization (var i = 0)
+- stop statement: Is where the condition must be met in order for the loop to continue.
+  - condition (i < arr.length)
+- update statement: Is to describe the increment or decrement that must be applied to the variable that is being used in the loop.
+  - increment (i++);
+* 
+* - for in loop
+* - while loop
+* - do while loop
 */
 
 // 1. Explain while, for, and for in loops.

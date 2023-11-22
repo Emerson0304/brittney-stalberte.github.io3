@@ -1,5 +1,11 @@
 /**
- What are Javascript functions 
+ What are Javascript functions ?
+
+Reusable block of code that 
+performs a specific task. 
+Functions can take parameters, 
+execute a series of statements, and 
+return a value.
 */
 
 /* 0: There's function declarations:
@@ -55,6 +61,67 @@ return 'wassup my bootcampers'
  console.log(test()); // wassup my bootcampers
 
 
+ // Global Scope //
+
+ /* Variables declared outside any function
+  or block have global scope and is accessible 
+  everywhere in the code.*/
+
+  var videoGame = 'StarWars'; // global scoped
+
+function printGameName() {
+    console.log(videoGame);
+}
+printGameName(); // Output: StarWars
+
+// Local Scope // 
+
+/* Variables declared inside a function have local scope 
+  and can only be accessed within that function.*/
+
+  function gameSystem() {
+    var gamingConsole = 'Xbox Series X'; // locally scoped
+    console.log(gamingConsole); 
+}
+gameSystem(); // Output: 'Xbox Series X'
 
 
-/*Higher ordered function. I created an arrow function that doubles numbers of my choice and prints to the console.*/
+/**
+ * What is Closure ?
+ *
+ * closure is a function that has access to the parent scope, 
+ * even after the parent function has closed.
+ * 
+ */
+
+  // Example of closure:
+  function tvShowLiked() {
+    var sitcom = 'The Neighborhood';
+
+    function tvShowDisliked() {
+        console.log(sitcom); // Acceessing the parent scope
+    }
+
+    return tvShowDisliked;
+  }
+
+  var tvShow = tvShowLiked();
+  tvShow(); // logs 'The Neighborhood'
+
+/**
+ * What is lexical scoping?
+ * 
+ * lexical scoping is the ability of a function to access variables from its lexical scope.
+ * 
+ */
+
+  // Example of lexical scoping:
+  function carsMovie() {
+    let lightingMcQueen = 'I am fast!';
+    function starCar() {
+      console.log(lightingMcQueen);
+    }
+    return starCar;
+  }
+  const starCar = carsMovie();
+  starCar(); // Output: "I am fast!"
